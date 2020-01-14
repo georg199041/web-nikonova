@@ -1,0 +1,111 @@
+body {
+    background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSuqUWb5VNHnGFPfFcsumgf0FpdZN-19WLoDaSGQqEiZzOzmDq&s") ;
+    background-color: #9cd2fe;
+    color: #333;
+    font-family: Lato, sans-serif;
+}
+.aligner {
+    background: #fff;
+    display: block;
+    width: 400px;
+    margin: 20px auto 0;
+    padding: 14px 22px 24px;
+    box-shadow: 0px 1px 16px 0px grey;
+    border-radius: 3px;
+    position: relative;
+}
+header {
+    color: #333;
+    font-weight: 700;
+    font-size: 15px;
+    border-bottom: 2px solid #333;
+    padding: 10px 0;
+    margin: 0;
+    text-transform: uppercase;
+    text-align: center;
+}
+nav {
+  margin: 10px 0;
+}
+nav > a {
+  color: #3f51b5;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+#popup {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 3px;
+  padding: 12px 20px 10px 10px;
+  text-align: center;
+  box-sizing: border-box;
+  z-index: 1;
+  overflow: hidden;
+  font-size: 22px;
+  color: #e4dede;
+  text-shadow: 1px 2px 2px #333;
+  line-height: 8;
+}
+#popup > button {
+  position: absolute;
+  bottom: 16px;
+  right: 50%;
+  font-size: 16px;
+  color: #e4dede;
+  text-shadow: 1px 2px 2px #333;
+  border: 1px solid #333;
+  border-radius: 3px;
+  text-transform: uppercase;
+  background: #319c36;
+  padding: 10px 26px;
+  margin-right: -35px;
+}
+.overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0,0,0, .9);
+  z-index: -1;
+}
+.list {
+  padding: 0;
+  list-style: none;
+  height: 70px;
+}
+.list__item {
+  margin: 12px 0;
+  position: relative;
+  padding-left: 22px;
+}
+
+.list__item > input {
+  display: none;
+}
+.list__item > input + label::before {
+    content: '';
+    display: block;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 14px;
+    height: 14px;
+    line-height: 1;
+    border: 1px solid #333;
+    border-radius: 2px;
+}
+.list__item > input:checked + label::before {
+    content: '\2713';
+    border-color: #319c36;
+}
+
+input:checked ~ label{
+  color: #319c36;
+  text-decoration-line: line-through;
+}

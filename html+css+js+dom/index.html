@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Title of the document</title>
+<link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="aligner">
+    <header>TODO list</header>
+    <nav>
+        <a href="../html/index.html">HTML</a> |
+        <a href="../html+css/index.html">CSS</a> |
+        <a href="../html+css+js/index.html">JavaScript</a> |
+        <a href="../html+css+js+dom/index.html">DOM</a>
+    </nav>
+    <section>
+      <form>
+        <div id="error"></div>
+        <input id="input" type="text"/>
+        <button id="submit">Save</button>
+      </form>
+    </section>
+    <section>
+        <ul id="list"></ul>
+    </section>
+    <footer>HTML + css + js + dom</footer>
+  </div>
+    <script>
+        let state = [{value: 'Task 1', done: true}, {value: 'Task  2', done: false}];
+        let showErr = '';
+        const listElement = document.getElementById('list');
+        const inputElement = document.getElementById('input');
+        const submitButton = document.getElementById('submit');
+        const errorElement = document.getElementById('error');
+        const addTodo = (e) => {
+          e.preventDefault();
+            if (!inputElement.value) {
+              errorElement.innerHTML = 'Input cannot be blank';
+              setTimeout(() => {
+                errorElement.innerHTML = '';
+              }, 900);
+              return
+            };
+            state.push({ value: inputElement.value, done: false});
+            renderElements();
+            inputElement.value = '';
+        };
+        const deleteElement = (id) => {
+            state = state.filter((item, index) => index !== id);
+            renderElements();
+        };
+        const renderElements = () => {
+            listElement.innerHTML = '';
+            state.forEach((item, index) => {
+                const liElement = document.createElement('li');
+                const deleteButton = document.createElement('button');
+                const label = document.createElement('label');
+                deleteButton.innerHTML = 'x';
+                deleteButton.addEventListener('click', deleteElement.bind(deleteButton, index));
+                label.innerHTML = item.value;
+                liElement.appendChild(label);
+                liElement.appendChild(deleteButton);
+                liElement.addEventListener('click', toggleDone.bind(liElement, index));
+                if (item.done) {
+                    liElement.className = 'done';
+                }
+                listElement.appendChild(liElement);
+            });
+        };
+        const toggleDone = (id) => {
+            state = state.map((item, index) => {
+                if (index === id) {
+                    return { done: !item.done, value: item.value }
+                }
+                return item;
+            });
+            renderElements()
+        };
+        submitButton.addEventListener('click', addTodo);
+        inputElement.addEventListener('keypress', e => {
+            if (e.key === 'Enter') {
+                addTodo();
+            }
+        });
+        renderElements()
+    </script>
+</body>
+</html>
